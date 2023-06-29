@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 var cors = require('cors');
 var responseObj = {
   "statusCode": 200,
@@ -6,11 +7,12 @@ var responseObj = {
   }
 const { Configuration, OpenAIApi } = require("openai");
 
-
+console.log(process.env.API_KEY)
 
 
 const configuration = new Configuration({
-    apiKey: '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',
+  // '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'
+    apiKey: process.env.API_KEY,
   });
 const openai = new OpenAIApi(configuration);
 
@@ -45,7 +47,7 @@ runCompletion();
 // res.send({statusCode:200, data: responseObj});
 
 })
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, ()=>{
   console.log('Server started on port ' + PORT);
