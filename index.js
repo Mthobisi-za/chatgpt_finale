@@ -10,7 +10,7 @@ const { Configuration, OpenAIApi } = require("openai");
 
 
 const configuration = new Configuration({
-    apiKey: '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',
+    apiKey: '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',
   });
 const openai = new OpenAIApi(configuration);
 
@@ -30,19 +30,19 @@ app.get('/savanna/:prompt', function (req, res) {
   var prompt = req.params.prompt;
   // res.send('Hello World '+ prompt);
 
-//   async function runCompletion () {
-//     const completion = await openai.createChatCompletion({
-//         model: "gpt-3.5-turbo",
-//         messages: [{role: "user", content: prompt}],
-//       });
+  async function runCompletion () {
+    const completion = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [{role: "user", content: 'change this sentence to be polite and remove anger feelings : '+prompt}],
+      });
       
-//       console.log(completion.data.choices);
+      console.log(completion.data.choices);
 
-//       res.send({statusCode:200, data: completion.data.choices[0].message.content});
-// }
-// runCompletion();
+      res.send({statusCode:200, data: completion.data.choices[0].message.content});
+}
+runCompletion();
 
-res.send({statusCode:200, data: responseObj});
+// res.send({statusCode:200, data: responseObj});
 
 })
 const PORT = process.env.PORT || 3000;
